@@ -1,5 +1,5 @@
 # maplestory
-#길드원 조회후 엑셀 저장
+# 길드원 조회후 엑셀 저장
 
 <hr/>
 <blockquote>
