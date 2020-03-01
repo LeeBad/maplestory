@@ -5,7 +5,7 @@ import openpyxl
 import f_get
 import re
 from openpyxl.styles import PatternFill, Color
-
+import numpy as np
 
 #엑셀 저장
 def xlsx_Save() :
@@ -56,7 +56,8 @@ sheet['D1'].fill = PatternFill(patternType='solid', fgColor=Color('848484'))
 sheet['E1'].fill = PatternFill(patternType='solid', fgColor=Color('848484'))
 sheet['F1'].fill = PatternFill(patternType='solid', fgColor=Color('848484'))
 guildName, guildWorld = f_get.get_Guild()
-userNames = f_get.get_Username(guildName,f_get.f_input_world(guildWorld))
+userNames = np.concatenate((f_get.get_Admin_Username(guildName,f_get.f_input_world(guildWorld)),f_get.get_Username(guildName,f_get.f_input_world(guildWorld))),axis=None)
+print(userNames)
 htmls = f_get.get_UserInfohtml(userNames)
 for a in range(len(userNames)) :
     sheet.cell(row=a+2, column=1).value = userNames[a]
