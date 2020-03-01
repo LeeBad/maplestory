@@ -60,6 +60,20 @@ def get_Username(guildName,guildWorld) :
         member = (tag.text)
         guild_Member.append(member)
     return guild_Member
+def get_Admin_Username(guildName,guildWorld) :
+    word = guildWorld+"/"+guildName
+    url_tmp = "www.maple.gg/guild/"+ word 
+    url = "http://" + parse.quote(url_tmp)+"/members?sort=level"
+    req = requests.get(url)
+    html = req.text
+    guild_Member = []
+    bs = BeautifulSoup(html, 'html.parser')
+    tags = bs.find_all('a',{'class':'font-size-14 text-black'})
+    for tag in tags:
+        #print(" ".join(tag.text.split())) 
+        member = (tag.text)
+        guild_Member.append(member)
+    return guild_Member
 #층수
 def get_UserFloor(html) :
     userFloor = []
@@ -117,7 +131,7 @@ def get_UserInfohtml(userNames) :
     a = 0
     for name in userNames :
         word = name
-        url_tmp = "www.maple.gg/u/"+ word 
+        url_tmp = "www.maple.gg/u/" + word
         url = "http://" + parse.quote(url_tmp)
         req = requests.get(url)
         html = req.text
